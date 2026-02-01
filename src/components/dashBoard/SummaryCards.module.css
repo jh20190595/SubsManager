@@ -1,14 +1,11 @@
 .container {
-    display: flex;
+
 }
 
 .summaryWrap {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding : 0px 30px;
+    gap : 20px;
 }
 
-.CardWrap {
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 8px;
-}

@@ -1,0 +1,36 @@
+.cardBox { 
+    border-style: solid;
+    border-radius: 8px;
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.05);
+    padding : 20px;
+    display: flex;
+    flex-direction: column;
+    gap : 12px;
+}
+
+.itemHeader {
+    display: flex;
+    align-items: center;
+    gap : 12px;
+    flex-direction: row;
+}
+.itemIcon {
+    display: flex;
+}
+
+.itemTitle {
+    font-size : 14px;
+    font-weight: 500;
+}
+
+.itemContent { 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap : 12px;
+}
+
+.itemContent { 
+    font-size: 22px;
+    font-weight: 700;
+}

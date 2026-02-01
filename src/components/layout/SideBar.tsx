@@ -16,7 +16,6 @@ export default function SideBar() {
                 <div className={styles.sectionWrap}>
 
                     <div className={styles.sectionTitle}>Main</div>
-
                     <NavLink
                         to="./dashBoard"
                         className={({ isActive }) =>
@@ -30,7 +29,6 @@ export default function SideBar() {
 
                 <div className={styles.sectionWrap}>
                     <div className={styles.sectionTitle}>Subscriptions</div>
-
                     <NavLink
                         to="./subscription"
                         className={({ isActive }) =>

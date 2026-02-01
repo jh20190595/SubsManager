@@ -1,17 +1,6 @@
 
-.App {
-  text-align: center;
-  padding : 20
-}
-
-.top {
-  width : 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.top-text {
-  font-size: 12;
+.body {
+  background-color : black;
 }
 
 .App-logo {

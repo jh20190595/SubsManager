@@ -1,13 +1,25 @@
 import { ReactNode } from "react"
+import styles from './Card.module.css';
 
-type Props = {
-    children: ReactNode;
+interface Props {
+    title: string;
+    value: string;
+    icon: React.ReactNode;
+    color: string;
+    subText?: string;
 }
 
-export default function Card({ children }: Props) {
+export default function Card({ title, value, icon, color, subText }: Props) {
     return (
-        <div>
-            {children}
+        <div className={styles.cardBox} style={{ backgroundColor: color }}>
+            <div className={styles.itemHeader}>
+                <div className={styles.itemIcon}>{icon}</div>
+                <div className={styles.itemTitle}>{title}</div>
+            </div>
+            <div className={styles.itemContent}>
+                <div className={styles.itemValue}>{value}</div>
+                {subText && <div className={styles.itemSubText}>{subText}</div>}
+            </div>
         </div>
     )
 }
