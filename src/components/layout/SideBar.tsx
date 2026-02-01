@@ -1,14 +1,48 @@
 import { useState } from "react"
-
+import { NavLink } from "react-router-dom"
+import styles from './SideBar.module.css'
+import { IoHome, IoCard, IoBarChart } from 'react-icons/io5';
+import { RiFileListFill } from "react-icons/ri";
 
 export default function SideBar() {
 
     return (
-        <div className="container">
-            
-            <div className="logo-image">로고</div>
+        <div className={styles['container']}>
 
-            <div>하이</div>
+            <div className={styles.logoWrap}>Logo</div>
+
+            <div className={styles.sectionContainer}>
+
+                <div className={styles.sectionWrap}>
+
+                    <div className={styles.sectionTitle}>Main</div>
+
+                    <NavLink
+                        to="./dashBoard"
+                        className={({ isActive }) =>
+                            isActive ? `${styles.menuItem} ${styles.active}` : styles.menuItem
+                        }
+                    >
+                        <IoHome size={16} color="#666" />
+                        <span>DashBoard</span>
+                    </NavLink>
+                </div>
+
+                <div className={styles.sectionWrap}>
+                    <div className={styles.sectionTitle}>Subscriptions</div>
+
+                    <NavLink
+                        to="./subscription"
+                        className={({ isActive }) =>
+                            isActive ? `${styles.menuItem} ${styles.active}` : styles.menuItem
+                        }
+                    >
+                        <RiFileListFill size={16} color="#666" />
+                        <span>My Subscription</span>
+                    </NavLink>
+                </div>
+
+            </div>
 
         </div>
     )

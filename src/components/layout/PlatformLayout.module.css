@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    height: 100vh;
+    gap : 20px;
+
+}
+
+.sideWrap {
+    flex : 0 0 250px;
+    box-shadow: 1px 0 10px rgba(0,0,0,0.05);
+}
+
+.contentWrap {
+    flex : 1;
+}

@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
-import DashBoardLayout from './components/layout/DashBoardLayout.tsx';
+import PlatformLayout from './components/layout/PlatformLayout.tsx';
 import DashBoard from './pages/platform/dashBoard.tsx';
 import Subscription from './pages/platform/subscription.tsx';
 import PublicLayout from './components/layout/PublicLayout.tsx';
@@ -12,7 +12,7 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route element={<DashBoardLayout />}>
+                <Route element={<PlatformLayout />}>
                     <Route path='/dashBoard' element={<DashBoard />} />
                     <Route path='/subscription' element={<Subscription />} />
                 </Route>
