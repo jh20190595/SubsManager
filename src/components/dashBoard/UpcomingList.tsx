@@ -1,27 +1,51 @@
+import { useEffect, useMemo } from 'react';
+import { useSubscriptionStore } from '../../store/useSubscriptionStore.tsx';
 import styles from './Upcoming.module.css';
-
-const MOCK_DATA = [
-    { id: 1, name: "넷플릭스", price: 17000, date: "2026-02-15", logo: "N" },
-    { id: 2, name: "유튜브 프리미엄", price: 14900, date: "2026-02-05", logo: "Y" }, // 이게 1등이어야 함
-    { id: 3, name: "쿠팡 와우", price: 4990, date: "2026-02-28", logo: "C" },
-    { id: 4, name: "어도비 클라우드", price: 62000, date: "2026-02-10", logo: "A" },
-    { id: 5, name: "멜론", price: 10900, date: "2026-03-01", logo: "M" },
-];
+import { calculateDday } from '../../utils/dateUtils.tsx';
+import { sub } from 'date-fns';
 
 export default function UpcomingList() {
 
-    const tody = new Date();
+    const subscriptions  = useSubscriptionStore((state) => state.subscriptions);
+    
+    console.log("불러온 데이터",subscriptions);
+
+    const upcomingList = useMemo(() => {
+        if (!subscriptions) return [];
+
+        return subscriptions
+            .map((item) => {
+                const dDay = calculateDday(item.next_billing_date);
+                return { ...item, dDay };
+            })
+            .filter((item) => item.dDay >= 0 && item.dDay <= 31)
+            .sort((a, b) => a.dDay - b.dDay);
+
+    }, [subscriptions]);
+
+
+    if (upcomingList.length === 0) {
+        return <div className={styles.emptyMsg}>🎉 당분간 결제 예정이 없어요!</div>;
+    }
 
     return (
         <div className={styles.container}>
+            <h2>📅 결제 임박 (7일 이내)</h2>
+            <ul className={styles.UpcomingListWrap}>
+                {upcomingList.map((item) => (
+                    <li key={item.id} className={styles.item}>
+                        <span style={{ 
+                            fontWeight: 'bold', 
+                            color: item.dDay === 0 ? 'red' : 'orange',
+                            marginRight: '10px',
+                        }}>
+                            {item.dDay === 0 ? "D-Day" : `D-${item.dDay}`}
+                        </span>
+                        <span>{item.service_Name}</span>
 
-            <h2>결제 임박</h2>
-
-            <div className={styles.UpcomingListWrap}>
-                넷플
-            </div>
-
-
+                    </li>
+                ))}
+            </ul>
         </div>
-    )
+    );
 }

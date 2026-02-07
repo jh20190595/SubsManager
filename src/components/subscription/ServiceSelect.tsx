@@ -1,9 +1,10 @@
 import Select from 'react-select';
 import { SUBSCRIPTION_SERVICES } from '../../constants/subscriptionData.tsx';
+import styles from './ServiceSelect.module.css';
 
-type Props = {
+interface Props {
     value : string;
-    onchange : () => void;
+    onChange : (id : string) => void;
 }
 
 export default function ServiceSelect({value, onChange} : Props) {
@@ -17,6 +18,7 @@ export default function ServiceSelect({value, onChange} : Props) {
 
     return (
         <Select
+            className={styles.ServiceList}
             options={options}
             placeholder="구독 중인 서비스를 검색하세요"
             onChange={ opt => onChange(opt?.value || "")}

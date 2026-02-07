@@ -1,18 +1,25 @@
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
+import styles from '../subscription/AddForm.module.css';
 import "react-datepicker/dist/react-datepicker.css";
 
-type Props = {
-    startDate = Date | null;
-    onChange = () => void;
+import { ko } from 'date-fns/locale';
+import { registerLocale } from 'react-datepicker';
+
+registerLocale('ko',ko)
+
+interface Props  {
+    date : Date | null
+    onChange : (data : Date | null) => void;
 }
 
-export function MyDatePicker({startDate, onChange} : Props) {
+export function MyDatePicker({date, onChange} : Props) {
 
     return (
         <DatePicker 
-            selected={startDate} 
-            onChange={ (data) => onChange(data)}
+            className={styles.inputDate}
+            selected={date} 
+            onChange={ (data : Date | null) => onChange(data)}
             locale="ko"
             dateFormat="yyyy-MM-dd"
         />
