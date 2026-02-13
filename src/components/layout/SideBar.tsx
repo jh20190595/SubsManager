@@ -9,7 +9,11 @@ export default function SideBar() {
     return (
         <div className={styles['container']}>
 
-            <div className={styles.logoWrap}>Logo</div>
+            <div className={styles.logoWrap}>
+                <NavLink
+                    to="./"
+                >logo</NavLink>
+            </div>
 
             <div className={styles.sectionContainer}>
 

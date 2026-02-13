@@ -2,37 +2,37 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding : 20px;
+    padding : 1.25rem; 
 }
 
 .logoWrap {
-    height : 60px;
+    height : 3.75rem; 
 }
 
 .sectionContainer {
     display: flex;
     flex-direction: column;
-    gap : 30px;
+    gap : 1.875rem; 
 }
 
 .sectionWrap {
     display: flex;
     flex-direction: column;
-    gap : 10px;
+    gap : 0.625rem; 
 }
 
 .sectionTitle {
-    font-size : 12px;
+    font-size : 0.75rem; 
 }
 
 .menuItem {
     display: flex;
     align-items: center;
-    gap : 5px;
+    gap : 0.3125rem;
     text-decoration: none;
     color : #333;
-    font-size : 16px;
-    border-radius: 8px;
+    font-size : 1rem; 
+    border-radius: 0.5rem; 
 }
 
 .active {

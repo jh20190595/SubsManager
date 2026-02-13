@@ -1,27 +1,31 @@
 import Select from 'react-select';
-import { SUBSCRIPTION_SERVICES } from '../../constants/subscriptionData.tsx';
-import styles from './ServiceSelect.module.css';
+import styles from './ServiceSelect.module.css'; 
 
-interface Props {
-    value : string;
-    onChange : (id : string) => void;
+export interface SelectOption {
+    value: string;
+    label: string;
 }
 
-export default function ServiceSelect({value, onChange} : Props) {
+interface Props {
+    value: string;
+    onChange: (value: string) => void; 
+    options: SelectOption[]; 
+    placeholder?: string;
+}
 
-    const options = SUBSCRIPTION_SERVICES.map( item => ({
-        value : item.id,
-        label : item.name
-    }))
-
-    const currentOption = options.find( opt => opt.value === value);
+export default function CustomSelect({ value, onChange, options, placeholder }: Props) {
+    
+    const selectedOption = options.find(opt => opt.value === value);
 
     return (
         <Select
             className={styles.ServiceList}
             options={options}
-            placeholder="구독 중인 서비스를 검색하세요"
-            onChange={ opt => onChange(opt?.value || "")}
+            value={selectedOption} 
+            placeholder={placeholder}
+            onChange={opt => {
+                onChange(opt?.value || "");
+            }}
         />
     )
 }

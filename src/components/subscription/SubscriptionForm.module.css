@@ -1,0 +1,43 @@
+.container {
+
+}
+
+.inputWrap {
+  display: flex;
+  flex-direction: column; 
+  align-items: flex-start;
+  gap: 0.5rem;
+  width: 100%; 
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #333;
+  margin-top : 0.75rem;
+}
+
+.inputWrap > div {
+  width: 100%;
+}
+
+.inputWrap :global(.react-datepicker-wrapper) {
+  width: 100%;
+  display: block;
+}
+
+.inputWrap :global(.react-datepicker__input-container input) {
+  width: 100%;
+  padding: 0.75rem; 
+  border-radius: 0.5rem; 
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  text-align: left; 
+}
+
+.priceInput {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem; 
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  text-align: left; 
+}

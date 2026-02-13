@@ -1,10 +1,10 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, memo } from 'react';
 import { useSubscriptionStore } from '../../store/useSubscriptionStore.tsx';
 import styles from './Upcoming.module.css';
 import { calculateDday } from '../../utils/dateUtils.tsx';
 import { sub } from 'date-fns';
 
-export default function UpcomingList() {
+function UpcomingList() {
 
     const subscriptions  = useSubscriptionStore((state) => state.subscriptions);
     
@@ -34,18 +34,17 @@ export default function UpcomingList() {
             <ul className={styles.UpcomingListWrap}>
                 {upcomingList.map((item) => (
                     <li key={item.id} className={styles.item}>
-                        <span style={{ 
-                            fontWeight: 'bold', 
-                            color: item.dDay === 0 ? 'red' : 'orange',
-                            marginRight: '10px',
-                        }}>
-                            {item.dDay === 0 ? "D-Day" : `D-${item.dDay}`}
-                        </span>
-                        <span>{item.service_Name}</span>
-
+                        <div className={styles.itemLeft}>Logo</div>
+                        <div className={styles.itemCenter}>
+                            <span>{item.service_Name}</span>
+                            <span>{item.dDay === 0 ? "D-day" : `D-${item.dDay}`}</span>
+                        </div>
+                        <div className={styles.itemRight}>₩ {item.price.toLocaleString()}</div>
                     </li>
                 ))}
             </ul>
         </div>
     );
 }
+
+export default memo(UpcomingList);

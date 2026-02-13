@@ -1,8 +1,28 @@
 .UpcomingListWrap {
     border : 2px solid #333;
+    border-radius: 12px;
     padding : 20px 30px;
+    display: flex;
+    flex-direction: column;
+    gap : 12px;
 }
 
 .item {
     list-style-type: none;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    align-items: center;
+    background-color: antiquewhite;
+    padding : 0.625rem 1rem;
+    border: 2px solid #333;
+    border-radius: 12px;
+}
+
+.itemLeft {
+
+}
+
+.itemCenter {
+    display: flex;
+    flex-direction: column;    
 }

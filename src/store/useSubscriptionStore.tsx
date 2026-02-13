@@ -1,6 +1,5 @@
 import { create } from 'zustand'
 import { fetchSubscriptionList } from '../api/subscriptionApi.tsx';
-import { fi } from 'date-fns/locale';
 
 interface Subscription {
     id: number;
