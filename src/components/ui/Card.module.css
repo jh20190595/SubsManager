@@ -1,36 +1,36 @@
-.cardBox { 
-    border-style: solid;
-    border-radius: 8px;
-    box-shadow: 10px 10px 10px rgba(0,0,0,0.05);
-    padding : 20px;
+.cardBox {
+    border-radius: 0.5rem;
+    border: 0.15rem solid #666;
+    box-shadow: 0.625rem 0.625rem 0.625rem rgba(0, 0, 0, 0.05);
+    padding: 1.25rem;
     display: flex;
     flex-direction: column;
-    gap : 12px;
+    gap: 0.75rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .itemHeader {
     display: flex;
     align-items: center;
-    gap : 12px;
+    gap: 0.75rem;
     flex-direction: row;
 }
+
 .itemIcon {
     display: flex;
 }
 
 .itemTitle {
-    font-size : 14px;
-    font-weight: 500;
+    font-size: 0.700rem;
+    font-weight: 600;
 }
 
-.itemContent { 
+.itemContent {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap : 12px;
-}
-
-.itemContent { 
-    font-size: 22px;
+    gap: 0.75rem;
+    font-size: 1.375rem;
     font-weight: 700;
 }

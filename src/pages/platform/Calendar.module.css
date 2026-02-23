@@ -1,0 +1,63 @@
+.container {
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* 7열 그리드 핵심 */
+.weekdays, .grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* 7칸 똑같이 나누기 */
+}
+
+.weekdays {
+  text-align: center;
+  font-weight: bold;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.cell {
+  min-height: 100px; /* 세로 높이 확보 */
+  border: 1px solid #eee;
+  padding: 8px;
+  position: relative;
+  background: #fff;
+}
+
+/* 이번 달이 아닌 날짜 흐리게 */
+.disabled {
+  background: #f9f9f9;
+  color: #ccc;
+}
+
+/* 오늘 날짜 강조 */
+.today {
+  background: #e6f0ff; /* 연한 파란색 */
+  border: 1px solid #0064FF;
+}
+
+/* 구독 아이템 스타일 */
+.subItem {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  margin-top: 4px;
+  color: #333;
+  gap: 4px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background-color: #ff4b4b; /* 포인트 컬러 */
+  border-radius: 50%;
+}

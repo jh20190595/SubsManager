@@ -1,22 +1,15 @@
 import ExpenseChart from '../../components/dashBoard/ExpenseChart.tsx'
 import SummaryCards from '../../components/dashBoard/SummaryCards.tsx'
 import UpcomingList from '../../components/dashBoard/UpcomingList.tsx'
-import  { useEffect } from 'react';
+import  { useState } from 'react';
 import styles from './dashBoard.module.css'
-import { useState } from 'react'
 import AddSubscriptionModal from '../../components/subscription/AddSubscriptionModal.tsx'
-import { useSubscriptionStore } from '../../store/useSubscriptionStore.tsx';
-
+import SavingInsight from '../../components/dashBoard/SavingInsight.tsx';
 
 export default function DashBoard() {
 
-    const [isShowModal, setIsShowModal] = useState(false)
-    const fetchSubscriptions = useSubscriptionStore((state) => state.fetchSubscriptions);
-    
+    const [isShowModal, setIsShowModal] = useState(false);
 
-    useEffect(() => {
-        fetchSubscriptions();
-    }, [])
 
     const handleClose = () => {
         setIsShowModal(false);
@@ -37,6 +30,7 @@ export default function DashBoard() {
             <div className={styles.bottomSection}>
                 <section className={styles.chartArea}><ExpenseChart /></section>
                 <section className={styles.listArea}><UpcomingList /></section>
+                <section className={styles.insightArea}><SavingInsight/></section>
             </div>
         </div>
     )

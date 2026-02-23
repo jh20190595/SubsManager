@@ -3,7 +3,7 @@ import styles from './Card.module.css';
 
 interface Props {
     title: string;
-    value: string;
+    value: string | number;
     icon: React.ReactNode;
     color: string;
     subText?: string;

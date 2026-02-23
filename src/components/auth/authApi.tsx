@@ -16,3 +16,15 @@ export const signInWithGoogle = async () => {
 
     return data
 }
+
+export const signinWithKaKao = async () => {
+    const { data,error } = await supabase.auth.signInWithOAuth({
+        provider : 'kakao',
+        options : { 
+            redirectTo : window.location.origin + '/dashboard',
+            queryParams : {
+                prompt : 'login',
+            }
+        }
+    });
+};

@@ -1,6 +1,6 @@
 
 
-export type CategoryType = 'MUSIC' | 'SHOPPING' | 'OTT';
+export type CategoryType = 'MUSIC' | 'SHOPPING' | 'OTT' | 'AI' | 'FOOD';
 
 export interface Plan {
     id: string;
@@ -179,8 +179,16 @@ export const SUBSCRIPTION_SERVICES: SubscriptionService[] = [
             { id: 'bg-custom', name: '기타 (직접 입력)', price: 0 },
         ],
     },
-
-
+    {
+        id: 'coupang_eats',
+        name: '쿠팡 이츠',
+        category: 'FOOD',
+        logoUrl: '/logos/coupang-wow.png',
+        plans: [
+            { id: 'cw-mo', name: '월간 멤버십', price: 7890 },
+            { id: 'cw-custom', name: '기타 (직접 입력)', price: 0 },
+        ],
+    },
     {
         id: 'coupang_wow',
         name: '쿠팡 와우',
@@ -231,6 +239,55 @@ export const SUBSCRIPTION_SERVICES: SubscriptionService[] = [
         plans: [
             { id: 'su-ye', name: '연간 멤버십 (연 3만원)', price: 2500 },
             { id: 'su-custom', name: '기타 (직접 입력)', price: 0 },
+        ],
+    },
+    {
+        id: 'chatgpt',
+        name: 'ChatGPT',
+        category: 'AI',
+        logoUrl: '/logos/chatgpt.png',
+        plans: [
+            { id: 'gpt-go', name: 'Go (월 $8)', price: 11200 },
+            { id: 'gpt-plus', name: 'Plus (월 $20)', price: 28000 },
+            { id: 'gpt-pro', name: 'Pro (월 $200)', price: 280000 },
+            { id: 'gpt-custom', name: '기타 (직접 입력)', price: 0 },
+        ],
+    },
+    {
+        id: 'gemini',
+        name: 'Gemini',
+        category: 'AI',
+        logoUrl: '/logos/gemini.png',
+        plans: [
+            { id: 'gmn-free', name: 'Gemini (Free)', price: 0 }, 
+            { id: 'gmn-adv', name: 'Gemini Advanced (Ultra 1.0 + 2TB)', price: 29000 }, 
+            { id: 'gmn-biz', name: 'Gemini Business (월 $20)', price: 28000 }, 
+            { id: 'gmn-ent', name: 'Gemini Enterprise (Ultra 포함 / 월 $30)', price: 42000 }, 
+            { id: 'gmn-custom', name: '기타 (직접 입력)', price: 0 },
+        ],
+    },
+    {
+        id: 'claude',
+        name: 'Claude',
+        category: 'AI',
+        logoUrl: '/logos/claude.png',
+        plans: [
+            { id: 'cld-free', name: 'Free', price: 0 },
+            { id: 'cld-pro', name: 'Pro (월 $20)', price: 28000 },
+            { id: 'cld-team', name: 'Team (월 $30)', price: 42000 }, 
+            { id: 'cld-custom', name: '기타 (직접 입력)', price: 0 },
+        ],
+    },
+    {
+        id: 'cursor',
+        name: 'Cursor',
+        category: 'AI',
+        logoUrl: '/logos/cursor.png',
+        plans: [
+            { id: 'csr-hobby', name: 'Hobby (Free)', price: 0 },
+            { id: 'csr-pro', name: 'Pro (월 $20)', price: 28000 }, 
+            { id: 'csr-biz', name: 'Business (월 $40)', price: 56000 }, 
+            { id: 'csr-custom', name: '기타 (직접 입력)', price: 0 },
         ],
     },
 ];

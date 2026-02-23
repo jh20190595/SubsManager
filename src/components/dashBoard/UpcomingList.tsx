@@ -1,14 +1,13 @@
-import { useEffect, useMemo, memo } from 'react';
-import { useSubscriptionStore } from '../../store/useSubscriptionStore.tsx';
+import { useEffect, useMemo, memo, useState } from 'react';
 import styles from './Upcoming.module.css';
 import { calculateDday } from '../../utils/dateUtils.tsx';
 import { sub } from 'date-fns';
+import { useSubscriptions } from '../../hooks/useSubscriptions.tsx';
+import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 
 function UpcomingList() {
 
-    const subscriptions  = useSubscriptionStore((state) => state.subscriptions);
-    
-    console.log("불러온 데이터",subscriptions);
+    const { data: subscriptions, isLoading, isError, error } = useSubscriptions();
 
     const upcomingList = useMemo(() => {
         if (!subscriptions) return [];
@@ -24,6 +23,23 @@ function UpcomingList() {
     }, [subscriptions]);
 
 
+
+    const handlePrevPage = () => {
+        if (currentPage - 1 < 1) return
+
+        setCurrentPage(prev => prev - 1)
+    }
+
+    const handleNextPage = () => {
+        if (currentPage + 1 > totalPage) return
+
+        setCurrentPage(prev => prev + 1);
+    }
+
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const totalPage = Math.ceil(upcomingList.length / 5);
+    const currentItem = upcomingList.slice((currentPage - 1) * 5, currentPage * 5);
+
     if (upcomingList.length === 0) {
         return <div className={styles.emptyMsg}>🎉 당분간 결제 예정이 없어요!</div>;
     }
@@ -31,18 +47,38 @@ function UpcomingList() {
     return (
         <div className={styles.container}>
             <h2>📅 결제 임박 (7일 이내)</h2>
-            <ul className={styles.UpcomingListWrap}>
-                {upcomingList.map((item) => (
+            <div className={styles.UpcomingListWrap}>
+                <ul className={styles.ListWrap}>
+                {currentItem.map((item) => (
                     <li key={item.id} className={styles.item}>
                         <div className={styles.itemLeft}>Logo</div>
                         <div className={styles.itemCenter}>
-                            <span>{item.service_Name}</span>
+                            <span>{item.service_name}</span>
                             <span>{item.dDay === 0 ? "D-day" : `D-${item.dDay}`}</span>
                         </div>
                         <div className={styles.itemRight}>₩ {item.price.toLocaleString()}</div>
                     </li>
                 ))}
-            </ul>
+                </ul>
+
+
+                {totalPage > 0 && (
+                    <div className={styles.footer}>
+                        <div className={styles.footerTop}>
+                            <div className={styles.divider}></div>
+                        </div>
+
+                        <div className={styles.footerBottom}>
+                            <div className={styles.left}><button className={styles.moveBtn} onClick={handlePrevPage} disabled={currentPage === 1}><IoChevronBack size={11} color={currentPage === 1 ? "#999": "#333"} /> <span>prev</span></button></div>
+                            <div className={styles.footerCenter}>{currentPage} / {totalPage} </div>
+                            <div className={styles.right}><button className={styles.moveBtn} onClick={handleNextPage} disabled={currentPage === totalPage}><span>next</span> <IoChevronForward size={11} color={totalPage === 3 ? "#999": "#333"} /> </button></div>
+                        </div>
+                    </div>
+                )}
+            </div>
+
+
+
         </div>
     );
 }

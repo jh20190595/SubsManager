@@ -41,6 +41,7 @@
 .bottomSection {
     display: grid;
     grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
     padding : 1.875rem 1.875rem;
     gap: 1.875rem; 
 }
@@ -50,5 +51,9 @@
 }
 
 .listArea {
+    grid-row : span 2
+}
+
+.insightArea {
 
 }

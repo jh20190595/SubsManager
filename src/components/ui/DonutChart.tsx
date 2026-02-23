@@ -1,5 +1,5 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip,Legend } from 'recharts';
-import { useSubscriptionStore } from '../../store/useSubscriptionStore.tsx';
+import { useSubscriptionStore } from '../../store/useSettingStore.tsx';
 
 export default function DonutChart() {
     const { subscriptions } = useSubscriptionStore();

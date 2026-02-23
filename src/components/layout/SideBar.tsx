@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { NavLink } from "react-router-dom"
 import styles from './SideBar.module.css'
-import { IoHome, IoCard, IoBarChart } from 'react-icons/io5';
+import { IoHome, IoCard, IoBarChart, IoCalendarNumberSharp } from 'react-icons/io5';
 import { RiFileListFill } from "react-icons/ri";
 
 export default function SideBar() {
@@ -28,6 +28,15 @@ export default function SideBar() {
                     >
                         <IoHome size={16} color="#666" />
                         <span>DashBoard</span>
+                    </NavLink>
+                    <NavLink
+                        to="./calendar"
+                        className={({ isActive }) =>
+                            isActive ? `${styles.menuItem} ${styles.active}` : styles.menuItem
+                        }
+                    >
+                        <IoCalendarNumberSharp size={16} color="#666" />
+                        <span>Calendar</span>
                     </NavLink>
                 </div>
 

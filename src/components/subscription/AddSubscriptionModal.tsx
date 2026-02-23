@@ -1,5 +1,5 @@
 import styles from './AddSubscriptionModal.module.css'
-import { X, Calendar,CalendarDays } from 'lucide-react'; 
+import { X } from 'lucide-react'; 
 import SubscriptionForm from "./SubscriptionForm.tsx";
 
 type Props = {

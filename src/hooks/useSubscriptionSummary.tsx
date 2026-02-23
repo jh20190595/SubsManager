@@ -1,64 +1,43 @@
 import { useMemo } from "react";
-import { useSubscriptionStore } from "../store/useSubscriptionStore.tsx";
+import { useSubscriptions } from "./useSubscriptions.tsx";
 
 export const useSubscriptionSummary = () => {
-    const { subscriptions } = useSubscriptionStore(state => state.subscriptions);
+    
+    const { data : subscriptions , isLoading , isError} = useSubscriptions();
 
-\
+
     const summary = useMemo(() => {
         if (!subscriptions || subscriptions.length === 0) {
             return {
-                totalMonthlyCost: 0,
-                activeSubscriptionCount: 0,
-                mostExpensiveSubscription: null,
-                estimatedAnnualCost: 0,
-            };
-        }
-        const now = new Date();
-        const currentYear = now.getFullYear();
-
-        const currentMonth = now.getMonth() + 1; 
-
-        const totalMonthlyCost = subscriptions.reduce((acc, item) => acc + item.price, 0);
-
-        const activeSubscriptionCount = subscriptions.length;
-
-
-        const mostExpensiveSubscription = subscriptions.reduce((prev, current) => {
-            return (prev.price > current.price) ? prev : current;
-        });
-
-        const estimatedAnnualCost = subscriptions.reduce((acc, item) => {
-            const startDate = new Date(item.start_date);
-            const startYear = startDate.getFullYear();
-            const startMonth = startDate.getMonth() + 1;
-
-            let monthsToPay = 0;
-
-            if (startYear < currentYear) {
-
-                monthsToPay = 12 - currentMonth + 1; 
-
-                if (startMonth < currentMonth) {
-
-                    monthsToPay = 12 - currentMonth + 1;
-                } else {
-
-                    monthsToPay = 12 - startMonth + 1;
-                }
+                totalMonthlycost: 0,
+                activeService : 0,
+                MaxPriceService : null,
+                annualTotalCost : 0,
             }
+        }
+        const totalMonthlycost = subscriptions.reduce((acc, item) => { return acc += item.price }, 0)
 
-            return acc + (monthsToPay * item.price);
-        }, 0);
+        const activeService = subscriptions.length
+
+        const MaxPriceService = subscriptions.reduce((prev,current) => {
+            return (prev.price > current.price) ? prev : current;
+        })
+
+        const annualTotalCost = subscriptions.reduce((acc,item) => {
+            const month = new Date(item.start_date).getMonth() + 1
+            const price = (12 - month) * item.price
+
+            return acc += price;
+        },0)
+
 
         return {
-            totalMonthlyCost,
-            activeSubscriptionCount,
-            mostExpensiveSubscription,
-            estimatedAnnualCost,
-        };
+            totalMonthlycost,
+            activeService,
+            MaxPriceService,
+            annualTotalCost,
+        }
+    }, [subscriptions])
 
-    }, [subscriptions]);
-
-    return summary;
+    return { summary, isLoading, isError}
 };
