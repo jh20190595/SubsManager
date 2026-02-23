@@ -19,6 +19,8 @@
   width: 25rem;             
   max-width: 90%;
   text-align: center;
+  max-height: 90vh; 
+  overflow-y: auto; 
 }
 
 .top {

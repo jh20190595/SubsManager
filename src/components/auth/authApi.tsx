@@ -22,9 +22,6 @@ export const signinWithKaKao = async () => {
         provider : 'kakao',
         options : { 
             redirectTo : window.location.origin + '/dashboard',
-            queryParams : {
-                prompt : 'login',
-            }
         }
     });
 };

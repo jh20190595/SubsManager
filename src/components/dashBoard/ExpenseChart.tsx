@@ -9,7 +9,7 @@ import { useSubscriptions } from "../../hooks/useSubscriptions.tsx";
 export default function ExpenseChart() {
 
     const {data : subscriptions, isLoading, isError, error }  = useSubscriptions();
-
+    const [selectMenu, setSelectMenu] = useState<'category' | 'all'>('category')
     if (subscriptions.length === 0) return <div>등록된 구독이 없어요! </div>
 
     return (
@@ -17,8 +17,13 @@ export default function ExpenseChart() {
             <div className={styles.topWrap}>
                 <h2>결제 차트</h2>
             </div>
+
+            <div className={styles.menuWrap}>
+                <button>Category</button>
+                <button></button>
+            </div>
             
-            <ul className={styles.menu}>
+            <ul className={styles.gaugeWrap}>
                 <GaugeBar/>
             </ul>
 

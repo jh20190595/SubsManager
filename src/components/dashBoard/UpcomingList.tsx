@@ -4,6 +4,7 @@ import { calculateDday } from '../../utils/dateUtils.tsx';
 import { sub } from 'date-fns';
 import { useSubscriptions } from '../../hooks/useSubscriptions.tsx';
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
+import { SUBSCRIPTION_SERVICES } from '../../constants/subscriptionData.tsx';
 
 function UpcomingList() {
 
@@ -22,6 +23,12 @@ function UpcomingList() {
 
     }, [subscriptions]);
 
+    useEffect(() => {
+        SUBSCRIPTION_SERVICES.forEach((service) => {
+            const img = new Image();
+            img.src = service.logoUrl;
+        });
+    }, []);
 
 
     const handlePrevPage = () => {
@@ -49,16 +56,21 @@ function UpcomingList() {
             <h2>📅 결제 임박 (7일 이내)</h2>
             <div className={styles.UpcomingListWrap}>
                 <ul className={styles.ListWrap}>
-                {currentItem.map((item) => (
-                    <li key={item.id} className={styles.item}>
-                        <div className={styles.itemLeft}>Logo</div>
-                        <div className={styles.itemCenter}>
-                            <span>{item.service_name}</span>
-                            <span>{item.dDay === 0 ? "D-day" : `D-${item.dDay}`}</span>
-                        </div>
-                        <div className={styles.itemRight}>₩ {item.price.toLocaleString()}</div>
-                    </li>
-                ))}
+                    {currentItem.map((item) => {
+
+                        const serviceLogo = SUBSCRIPTION_SERVICES.find(f => f.id === item.service_name)
+
+                        return (
+                            <li key={item.id} className={styles.item}>
+                                <div className={styles.itemLeft}><img src={serviceLogo?.logoUrl || "Logo"} style={{ width: '40px', height: '40px', borderRadius: '30%', objectFit : 'contain', }} /></div>
+                                <div className={styles.itemCenter}>
+                                    <span>{item.service_name}</span>
+                                    <span>{item.dDay === 0 ? "D-day" : `D-${item.dDay}`}</span>
+                                </div>
+                                <div className={styles.itemRight}>₩ {item.price.toLocaleString()}</div>
+                            </li>
+                        )
+                    })}
                 </ul>
 
 
@@ -69,9 +81,9 @@ function UpcomingList() {
                         </div>
 
                         <div className={styles.footerBottom}>
-                            <div className={styles.left}><button className={styles.moveBtn} onClick={handlePrevPage} disabled={currentPage === 1}><IoChevronBack size={11} color={currentPage === 1 ? "#999": "#333"} /> <span>prev</span></button></div>
+                            <div className={styles.left}><button className={styles.moveBtn} onClick={handlePrevPage} disabled={currentPage === 1}><IoChevronBack size={11} color={currentPage === 1 ? "#999" : "#333"} /> <span>prev</span></button></div>
                             <div className={styles.footerCenter}>{currentPage} / {totalPage} </div>
-                            <div className={styles.right}><button className={styles.moveBtn} onClick={handleNextPage} disabled={currentPage === totalPage}><span>next</span> <IoChevronForward size={11} color={totalPage === 3 ? "#999": "#333"} /> </button></div>
+                            <div className={styles.right}><button className={styles.moveBtn} onClick={handleNextPage} disabled={currentPage === totalPage}><span>next</span> <IoChevronForward size={11} color={totalPage === 3 ? "#999" : "#333"} /> </button></div>
                         </div>
                     </div>
                 )}

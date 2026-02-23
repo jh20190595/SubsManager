@@ -20,26 +20,26 @@ export default function SummaryCards() {
     const summaryData = [
         {
             title: "이번 달 총 결제",
-            value: `₩ ${totalMonthlycost.toLocaleString()}원` || "",
+            value: totalMonthlycost === 0 ? '-' : `₩ ${totalMonthlycost.toLocaleString()}원`,
             icon: <IoWallet size={22} />,
             color: "#dbeafe"
         },
         {
             title: "구독 중인 서비스",
-            value: activeService || "",
+            value: activeService === 0 ? '-' : activeService,
             icon: <IoApps size={22} />,
             color: "#d1fae5"
         },
         {
             title: "가장 비싼 구독",
             value: MaxPriceService?.service_Name || "",
-            subText: `₩ ${MaxPriceService?.price.toLocaleString()}원` || "",
+            subText: MaxPriceService === null ? '-' : `₩ ${MaxPriceService?.price.toLocaleString()}원`,
             icon: <IoPricetag size={22} />,
             color: "#fef3c7"
         },
         {
             title: "연간 예상 지출",
-            value: `₩ ${annualTotalCost?.toLocaleString()}원` || "",
+            value: annualTotalCost === 0 ? "-" : `₩ ${annualTotalCost?.toLocaleString()}원`,
             icon: <IoCalendar size={22} />,
             color: "#fee2e2"
         },
