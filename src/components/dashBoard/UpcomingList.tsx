@@ -53,13 +53,11 @@ function UpcomingList() {
 
     return (
         <div className={styles.container}>
-            <h2>📅 결제 임박 (7일 이내)</h2>
+            <h3 className={styles.title}>📅 결제 임박</h3>
             <div className={styles.UpcomingListWrap}>
                 <ul className={styles.ListWrap}>
                     {currentItem.map((item) => {
-
                         const serviceLogo = SUBSCRIPTION_SERVICES.find(f => f.id === item.service_name)
-
                         return (
                             <li key={item.id} className={styles.item}>
                                 <div className={styles.itemLeft}><img src={serviceLogo?.logoUrl || "Logo"} style={{ width: '40px', height: '40px', borderRadius: '30%', objectFit : 'contain', }} /></div>

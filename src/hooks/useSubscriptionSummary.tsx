@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { useSubscriptions } from "./useSubscriptions.tsx";
+import { SUBSCRIPTION_SERVICES } from "../constants/subscriptionData.tsx";
 
 export const useSubscriptionSummary = () => {
     
@@ -12,6 +13,7 @@ export const useSubscriptionSummary = () => {
                 totalMonthlycost: 0,
                 activeService : 0,
                 MaxPriceService : null,
+                MaxPriceserviceLogo : "",
                 annualTotalCost : 0,
             }
         }
@@ -22,6 +24,8 @@ export const useSubscriptionSummary = () => {
         const MaxPriceService = subscriptions.reduce((prev,current) => {
             return (prev.price > current.price) ? prev : current;
         })
+
+        const MaxPriceserviceLogo = SUBSCRIPTION_SERVICES.find( f => f.id === MaxPriceService.service_name)?.logoUrl
 
         const annualTotalCost = subscriptions.reduce((acc,item) => {
             const month = new Date(item.start_date).getMonth() + 1
@@ -35,6 +39,7 @@ export const useSubscriptionSummary = () => {
             totalMonthlycost,
             activeService,
             MaxPriceService,
+            MaxPriceserviceLogo,
             annualTotalCost,
         }
     }, [subscriptions])

@@ -14,6 +14,7 @@ export default function SummaryCards() {
         totalMonthlycost = 0,
         activeService = 0,
         MaxPriceService = null,
+        MaxPriceserviceLogo = "",
         annualTotalCost = 0
     } = summary || {};
 
@@ -32,7 +33,8 @@ export default function SummaryCards() {
         },
         {
             title: "가장 비싼 구독",
-            value: MaxPriceService?.service_Name || "",
+            logo : MaxPriceserviceLogo || "",
+            value: MaxPriceService?.service_name || "",
             subText: MaxPriceService === null ? '-' : `₩ ${MaxPriceService?.price.toLocaleString()}원`,
             icon: <IoPricetag size={22} />,
             color: "#fef3c7"

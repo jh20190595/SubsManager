@@ -1,14 +1,15 @@
-import { useMemo, useState, useEffect } from "react"; 
-import styles from './GaugeBar.module.css';
+import { useMemo, useState, useEffect } from "react";
+import styles from './Overview.module.css';
 import { useSubscriptions } from "../../hooks/useSubscriptions.tsx";
 
 const COLORS = [
     "#fca5a5", "#93c5fd", "#c4b5fd", "#fdba74", "#86efac",
 ];
 
-export default function GaugeBar() {
-    const {data : subscriptions, isLoading, isError, error }  = useSubscriptions();
-    const categoryList = ['OTT', 'SHOPPING', 'AI', 'FOOD', 'MUSIC'];
+const categoryList = ['OTT', 'SHOPPING', 'AI', 'FOOD', 'MUSIC'];
+
+export default function OverviewComponent() {
+    const { data: subscriptions, isLoading, isError, error } = useSubscriptions();
 
     const [isMounted, setIsMounted] = useState(false);
 
@@ -20,14 +21,20 @@ export default function GaugeBar() {
     }, []);
 
     const data = useMemo(() => {
+        if (!subscriptions) {
 
-        if(!subscriptions) {
-            return categoryList.map((item,index) => ({
-                name : item,
-                value : 0,
-                percent : 0,
-                color : COLORS[index]
-            }))}
+            return categoryList.map((item, index) => ({
+                name: item,
+                value: 0,
+                percent: 0,
+                color: COLORS[index]
+            }))
+        }
+
+        const maxSpend = Math.max(...categoryList.map(item =>
+            subscriptions.filter(f => f.category === item).reduce((acc, cur) => acc + cur.price, 0)
+        ));
+
         return categoryList.map((item, index) => {
             const totalPrice = subscriptions
                 .filter(f => f.category === item)
@@ -36,7 +43,7 @@ export default function GaugeBar() {
             return {
                 name: item,
                 value: totalPrice,
-                percent: Math.min((totalPrice / 100000) * 100, 100),
+                percent: Math.min((totalPrice / maxSpend) * 100, 100),
                 color: COLORS[index]
             }
         })
@@ -44,6 +51,7 @@ export default function GaugeBar() {
 
     return (
         <div className={styles.container}>
+            <h4 className={styles.title}>📊 Spending by Category</h4>
             <ul className={styles.menu}>
                 {data.map((item, index) => (
                     <li key={item.name} className={styles.content}>
@@ -52,13 +60,13 @@ export default function GaugeBar() {
                             <div className={styles.totalPrice}>₩ {item.value.toLocaleString()}/month</div>
                         </div>
                         <div style={{
-                            width : '100%',
-                            height : '10px',
-                            borderRadius : '8px',
-                            border : '1px solid #666', 
-                            backgroundColor : '#f3f4f6',
-                            boxSizing : 'border-box',
-                            overflow: 'hidden' 
+                            width: '100%',
+                            height: '12px',
+                            borderRadius: '8px',
+                            border: '1px solid #666',
+                            backgroundColor: '#f3f4f6',
+                            boxSizing: 'border-box',
+                            overflow: 'hidden'
                         }}>
                             <div style={{
                                 width: isMounted ? `${item.percent}%` : '0%',

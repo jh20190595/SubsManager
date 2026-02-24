@@ -17,6 +17,10 @@
     flex-direction: row;
 }
 
+img {
+    display: block;
+}
+
 .itemIcon {
     display: flex;
 }

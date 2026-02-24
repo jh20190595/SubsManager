@@ -2,6 +2,13 @@
     width: 100%;
     padding: 1rem 0.625rem;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap : 15px;
+}
+
+.title {
+    margin : 0;
 }
 
 .menu {
@@ -10,16 +17,16 @@
     margin: 0;
     display: flex;       
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 12px;
 }
 
 .content {
-    width: 100%; 
+    width: 100%;
     list-style: none;
     font-size: 11px;
-    font-weight: 700;
-    margin: 0;
-    padding: 0; 
+    font-weight: 700; 
 }
 
 .subContent {

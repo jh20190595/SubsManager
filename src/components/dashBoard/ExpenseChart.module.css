@@ -1,20 +1,35 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap : 12px;
+}
+
 .topWrap {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
 }
 
 .menuWrap {
-    
+    display: flex;
+    flex-direction: row;
+    gap :12px;
+    margin-bottom: 10px;
 }
 
-.gaugeWrap {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.menuBtn {
+    border: 2px solid #666;
+    border-radius: 8px;
+    background-color: antiquewhite;
+    padding: 0.3rem 1rem;
+    font-size: 11px;
+    font-weight: 600;
+
+}
+
+.ListWrap {
     border : 2px solid #333;
     border-radius: 8px;
     padding : 0;
     margin : 0;
+    min-height: 300px;
+    flex : 1
 }

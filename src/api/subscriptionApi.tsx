@@ -5,11 +5,13 @@ import axios from 'axios'
 
 export const fetchSubscriptionList = async (userId: string | undefined) => {
 
+    if(!userId) return [];
 
     try {
         const { data, error } = await supabase
             .from('subscription')
             .select('*')
+            .eq('user_id',userId)
             .order('created_at', { ascending: true })
         if (error) throw error;
         return data;
