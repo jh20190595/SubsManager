@@ -45,7 +45,7 @@ export default function SubscriptionForm() {
     } = useSubscriptionLogic();
 
     const serviceOptions = SUBSCRIPTION_SERVICES.map(item => ({
-        value: item.id,
+        value: item.service_name,
         label: item.name
     }));
 

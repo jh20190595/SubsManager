@@ -1,5 +1,3 @@
-
-
 export type CategoryType = 'MUSIC' | 'SHOPPING' | 'OTT' | 'AI' | 'FOOD';
 
 export interface Plan {
@@ -9,20 +7,21 @@ export interface Plan {
 }
 
 export interface SubscriptionService {
-    id: string;
+    service_name: string;
     name: string;
     category: CategoryType;
     logoUrl: string;
+    site_url: string; // 추가된 필드
     plans: Plan[];
 }
 
 export const SUBSCRIPTION_SERVICES: SubscriptionService[] = [
-
     {
-        id: 'Netflix',
+        service_name: 'Netflix',
         name: '넷플릭스',
         category: 'OTT',
         logoUrl: '/logos/netflix-icon-svgrepo-com.svg',
+        site_url: 'https://www.netflix.com',
         plans: [
             { id: 'nf-ad', name: '광고형 스탠다드', price: 7000 },
             { id: 'nf-st', name: '스탠다드', price: 13500 },
@@ -31,10 +30,11 @@ export const SUBSCRIPTION_SERVICES: SubscriptionService[] = [
         ],
     },
     {
-        id: 'Youtube_premium',
+        service_name: 'Youtube_premium',
         name: '유튜브 프리미엄',
         category: 'OTT',
         logoUrl: '/logos/JrT9vDiw5nqEXvaBq0YkEgi2_GEqZwmc3_J7Ed4iR1yK9YB0AkVuUDy3NZ2AdzkG0ss7xZZdJAVAaMMCbN-zPF3uwhwSGM67krLcAU9ztAybnAYoiwDnKC7N-mJh3p3RIs59TOLcL8wzUM0wVl4Qfw.svg',
+        site_url: 'https://www.youtube.com/premium',
         plans: [
             { id: 'yt-pl', name: '프리미엄 라이트', price: 8500 },
             { id: 'yt-pl(ios)', name: '프리미엄 라이트(ios)', price: 10900 },
@@ -44,10 +44,11 @@ export const SUBSCRIPTION_SERVICES: SubscriptionService[] = [
         ],
     },
     {
-        id: 'Tving',
+        service_name: 'Tving',
         name: '티빙',
         category: 'OTT',
         logoUrl: '/logos/enm_media_220220714_01-720x182 (1).jpg',
+        site_url: 'https://www.tving.com',
         plans: [
             { id: 'tv-ad', name: '광고형 스탠다드', price: 5500 },
             { id: 'tv-ba', name: '베이직', price: 9500 },
@@ -57,10 +58,11 @@ export const SUBSCRIPTION_SERVICES: SubscriptionService[] = [
         ],
     },
     {
-        id: 'Disney_plus',
+        service_name: 'Disney_plus',
         name: '디즈니 플러스',
         category: 'OTT',
         logoUrl: '/logos/rRkJkWKPyyeb_Gri0tX2GBskt9jONkZSkkjcRiUEQGmtToQ_xMyS39KIfTX3YfjFj0SO57Fjf1TmYx4dS3e0pODuYUXxsCDw6bJR-8xoBFW714gx6_2sm-pv3tsZ3Ahc0wjclfu8Gd2q_CkFw5AZHw.svg',
+        site_url: 'https://www.disneyplus.com',
         plans: [
             { id: 'dp-st', name: '스탠다드', price: 9900 },
             { id: 'dp-pr', name: '프리미엄', price: 13900 },
@@ -68,10 +70,11 @@ export const SUBSCRIPTION_SERVICES: SubscriptionService[] = [
         ],
     },
     {
-        id: 'Wavve',
+        service_name: 'Wavve',
         name: '웨이브',
         category: 'OTT',
         logoUrl: '/logos/UrwQpH80yfEEIibZcvynm1-f-eY6fipwxgCqoWPRCJFq8QLHuJ6LP1mT18HuvzA4WsDwEXfHN6qE77w2Qqp4qQ.svg',
+        site_url: 'https://www.wavve.com',
         plans: [
             { id: 'wv-ba', name: '베이직', price: 7900 },
             { id: 'wv-st', name: '스탠다드', price: 10900 },
@@ -80,10 +83,11 @@ export const SUBSCRIPTION_SERVICES: SubscriptionService[] = [
         ],
     },
     {
-        id: 'Watcha',
+        service_name: 'Watcha',
         name: '왓챠',
         category: 'OTT',
         logoUrl: '/logos/WATCHA_Logo_Main.svg',
+        site_url: 'https://watcha.com',
         plans: [
             { id: 'wc-ba', name: '베이직', price: 7900 },
             { id: 'wc-pr', name: '프리미엄', price: 12900 },
@@ -91,22 +95,22 @@ export const SUBSCRIPTION_SERVICES: SubscriptionService[] = [
         ],
     },
     {
-        id: 'Coupang_play',
+        service_name: 'Coupang_play',
         name: '쿠팡플레이',
         category: 'OTT',
         logoUrl: '/logos/logo_coupangplay_without_text.png',
+        site_url: 'https://www.coupangplay.com',
         plans: [
             { id: 'cp-wow', name: '와우 멤버십 포함', price: 7890 },
             { id: 'cp-custom', name: '기타 (직접 입력)', price: 0 },
         ],
     },
-
-
     {
-        id: 'Melon',
+        service_name: 'Melon',
         name: '멜론',
         category: 'MUSIC',
         logoUrl: '/logos/oe_KVSJdUbnq9erKCURmdpLaBQ7U3pN8ly6LCO3L7Q-xvlCjSzdLGEyxRc-waS2lsX1zFTYuueIVFy6fyiSuFpsivXEKllnyTpMJSC3zHW-drNJsTrbQbnc7BxSNk4s3g_UJhx6i4y0D6ynn5L7Dtg.svg',
+        site_url: 'https://www.melon.com',
         plans: [
             { id: 'ml-ms', name: '모바일 스트리밍 클럽 정기결제', price: 7590 },
             { id: 'ml-st', name: '스트리밍 클럽 정기결제', price: 8690 },
@@ -117,10 +121,11 @@ export const SUBSCRIPTION_SERVICES: SubscriptionService[] = [
         ],
     },
     {
-        id: 'Spotify',
+        service_name: 'Spotify',
         name: '스포티파이',
         category: 'MUSIC',
         logoUrl: '/logos/Spotify_Symbol_0.svg',
+        site_url: 'https://www.spotify.com',
         plans: [
             { id: 'sp-sd', name: '학생', price: 6000 },
             { id: 'sp-bg', name: '베이직', price: 7900 },
@@ -130,10 +135,11 @@ export const SUBSCRIPTION_SERVICES: SubscriptionService[] = [
         ],
     },
     {
-        id: 'Youtube_music',
+        service_name: 'Youtube_music',
         name: '유튜브 뮤직',
         category: 'MUSIC',
         logoUrl: '/logos/e9sReuBwPajNOUTNcQt2fLtKsgFVmSkCeDh7lSBB_Q2yQGY_zZgF_GZETTrO4-IthUw2txnaR51hqjMqUCHrlSF-yhuxVRNayS8Jf-8PW4_1UPSC2gp7u0fvbm7mEbGQqNanwBer3d535N79unoNrA.svg',
+        site_url: 'https://music.youtube.com',
         plans: [
             { id: 'ym-pr', name: '개인', price: 11900 },
             { id: 'ym-pr(ios)', name: '개인(ios)', price: 14900 },
@@ -141,10 +147,11 @@ export const SUBSCRIPTION_SERVICES: SubscriptionService[] = [
         ],
     },
     {
-        id: 'Apple_music',
+        service_name: 'Apple_music',
         name: '애플 뮤직',
         category: 'MUSIC',
         logoUrl: '/logos/Apple Music_Symbol_0.svg',
+        site_url: 'https://www.apple.com/apple-music/',
         plans: [
             { id: 'am-in', name: '개인', price: 8900 },
             { id: 'am-fa', name: '가족', price: 13500 },
@@ -152,10 +159,11 @@ export const SUBSCRIPTION_SERVICES: SubscriptionService[] = [
         ],
     },
     {
-        id: 'Genie',
+        service_name: 'Genie',
         name: '지니',
         category: 'MUSIC',
         logoUrl: '/logos/genie.png',
+        site_url: 'https://www.genie.co.kr',
         plans: [
             { id: 'gn-sst', name: '스마트 음악감상', price: 7900 },
             { id: 'gn-st', name: '음악감상', price: 8400 },
@@ -165,10 +173,11 @@ export const SUBSCRIPTION_SERVICES: SubscriptionService[] = [
         ],
     },
     {
-        id: 'Bugs',
+        service_name: 'Bugs',
         name: '벅스',
         category: 'MUSIC',
         logoUrl: '/logos/hahFdCS5zbvV7hhh-7nGC75_yL3m9CcrP7-rJVOR8RGG-VAzx92HNfQDKthsBqDnz8X3Eh5ARmDf6Rf1CPnlJZKArlbRH3QrWcBAtE8ITfwNqlqCQhhUIUKKT4uBsHe0rUKM2tSrY-STIHfdiJ491Q.svg',
+        site_url: 'https://music.bugs.co.kr',
         plans: [
             { id: 'bg-cst', name: '벅스 크루 할인', price: 5940 },
             { id: 'bg-yst', name: '벅스 1년 할인', price: 7386 },
@@ -180,30 +189,33 @@ export const SUBSCRIPTION_SERVICES: SubscriptionService[] = [
         ],
     },
     {
-        id: 'Coupang_eats',
+        service_name: 'Coupang_eats',
         name: '쿠팡 이츠',
         category: 'FOOD',
         logoUrl: '/logos/ST6z47vey0iOufd5LLMaMGoAvYUEZYWuDNITVw8o5TIuvG0BqzPxcjP7ZteD8V91CZ9OtERX55xn6W4miAsBgIKhcVagwtqOZM2qzvIT0Tk0TVgtwtWRzbqGBM-wP1A8dex4Gem20e6r58L7e0T4KQ.svg',
+        site_url: 'https://www.coupangeats.com',
         plans: [
             { id: 'cw-mo', name: '월간 멤버십', price: 7890 },
             { id: 'cw-custom', name: '기타 (직접 입력)', price: 0 },
         ],
     },
     {
-        id: 'Coupang_wow',
+        service_name: 'Coupang_wow',
         name: '쿠팡 와우',
         category: 'SHOPPING',
         logoUrl: '/logos/쿠팡-와우-로고-1.jpg',
+        site_url: 'https://www.coupang.com',
         plans: [
             { id: 'cw-mo', name: '월간 멤버십', price: 7890 },
             { id: 'cw-custom', name: '기타 (직접 입력)', price: 0 },
         ],
     },
     {
-        id: 'Naver_plus',
+        service_name: 'Naver_plus',
         name: '네이버 플러스 멤버십',
         category: 'SHOPPING',
         logoUrl: '/logos/d0O8DCOOQ9h8oNt8UkYa8NU7LdIow19R0kMGO_aPmeU6jdRLMzw_Sq-DHkyxPEj8utqQJvbd6jTMOU-2nhAh8w.svg',
+        site_url: 'https://nid.naver.com/membership/join',
         plans: [
             { id: 'np-mo', name: '월간 이용권', price: 4900 },
             { id: 'np-ye', name: '연간 이용권 (월 평균)', price: 3900 },
@@ -211,10 +223,11 @@ export const SUBSCRIPTION_SERVICES: SubscriptionService[] = [
         ],
     },
     {
-        id: 'Baemin_club',
+        service_name: 'Baemin_club',
         name: '배민클럽',
         category: 'FOOD',
         logoUrl: '/logos/MRXnIeFc4iiQdNaZpGADbXV6G9j_Jd6qfxmIR4niM-GKHzWnmqJdttfNRZfMw5nYMFmjWddPurpik7XJE5_Pp6WyEwv4MLiKlHpvnK6DX1X40YhX0QdYWyRxZsVkOgzhnRNl-QZA0h6gpqzVoX67mQ.svg',
+        site_url: 'https://www.baemin.com',
         plans: [
             { id: 'bm-pmo', name: '월간 이용권(프로모션가)', price: 1990 },
             { id: 'bm-mo', name: '월간 이용권', price: 3900 },
@@ -222,30 +235,33 @@ export const SUBSCRIPTION_SERVICES: SubscriptionService[] = [
         ],
     },
     {
-        id: 'Kurly_lovers',
+        service_name: 'Kurly_lovers',
         name: '컬리 러버스',
         category: 'SHOPPING',
         logoUrl: '/logos/RaJ3PWieCpNAqpfiy0NjeVbKLysfeVF57PJB_dl0mtBBP6LTqQo1WtOIcYonkrrI3s-xFk6VRz9CC0CZGYYeBg.svg',
+        site_url: 'https://www.kurly.com',
         plans: [
             { id: 'kl-pa', name: '컬리패스', price: 4500 },
             { id: 'kl-custom', name: '기타 (직접 입력)', price: 0 },
         ],
     },
     {
-        id: 'Shinsegae_universe',
+        service_name: 'Shinsegae_universe',
         name: '신세계 유니버스',
         category: 'SHOPPING',
         logoUrl: '/logos/q06Q0ijWF0Ui5tkM6VbOpu0akTMEDE5NUChapAMOuKgBdGAo6yATv3N-hpujgREdz9fiP3sOYlGvuvTENN3ogX3RxleBAn96Nky3W0-6JLBLdpX0f8x8JpjzPgahsoRaqr-KwpdP_7Wi5FPpkic-lQ.webp',
+        site_url: 'https://www.shinsegae-universe.com',
         plans: [
             { id: 'su-ye', name: '연간 멤버십 (연 3만원)', price: 2500 },
             { id: 'su-custom', name: '기타 (직접 입력)', price: 0 },
         ],
     },
     {
-        id: 'Chatgpt',
+        service_name: 'Chatgpt',
         name: 'ChatGPT',
         category: 'AI',
         logoUrl: '/logos/W9ys5CTrjOw-4TTskLe9eAcVE3gvoMMRUnn2Oj31sTr7iATjbUZfziy1QOo72HTlKsFEltwTd6v0VfA1P9BTlF96XEAXRNjyx1TVpJJLNHmtkhBokx3WTiMDep35jXUD8YB0VJ-rFWW0DUaVG3Glzg.svg',
+        site_url: 'https://chat.openai.com',
         plans: [
             { id: 'gpt-go', name: 'Go (월 $8)', price: 11200 },
             { id: 'gpt-plus', name: 'Plus (월 $20)', price: 28000 },
@@ -254,10 +270,11 @@ export const SUBSCRIPTION_SERVICES: SubscriptionService[] = [
         ],
     },
     {
-        id: 'Gemini',
+        service_name: 'Gemini',
         name: 'Gemini',
         category: 'AI',
         logoUrl: '/logos/5HZogWgXTRjA6PQrIKSx2Vj_sW0fYjuszK0LXqJN0XrFaNM9NM67-0LQ3WC_7DQDMXWOwmo_n9PxokGZOnLatg.svg',
+        site_url: 'https://gemini.google.com',
         plans: [
             { id: 'gmn-free', name: 'Gemini (Free)', price: 0 },
             { id: 'gmn-adv', name: 'Gemini Advanced (Ultra 1.0 + 2TB)', price: 29000 },
@@ -267,10 +284,11 @@ export const SUBSCRIPTION_SERVICES: SubscriptionService[] = [
         ],
     },
     {
-        id: 'Claude',
+        service_name: 'Claude',
         name: 'Claude',
         category: 'AI',
         logoUrl: '/logos/uRkLnT7S-bDcO2_OquFI5GCCoJFp9fcq1D1XXH2eboANCm1CeUwBkkRnSVqVgD-rUHmzJXw5rTI43mwSAurBt4Bdyu9k0Er9v3B_FMj9tZeREi-2xLqCyp4SRYdED5jYXSyg6bmAubItztuCbX6BSg.svg',
+        site_url: 'https://claude.ai',
         plans: [
             { id: 'cld-free', name: 'Free', price: 0 },
             { id: 'cld-pro', name: 'Pro (월 $20)', price: 28000 },
@@ -279,10 +297,11 @@ export const SUBSCRIPTION_SERVICES: SubscriptionService[] = [
         ],
     },
     {
-        id: 'Cursor',
+        service_name: 'Cursor',
         name: 'Cursor',
         category: 'AI',
         logoUrl: '/logos/JCo6yH5zk2L4OgyRt9o_VAZI736VhRLnC2r5-2RUwsCHksZ04oyg-mrBNZfw-Oy9CcBmHms6k5QumCd0MljgDfsw0Oj35oEXxPq16kMChDuyvT5YMDupLK0486DVsPjFgomlBZtZz8UPm-CbdF3MWg.webp',
+        site_url: 'https://www.cursor.com',
         plans: [
             { id: 'csr-hobby', name: 'Hobby (Free)', price: 0 },
             { id: 'csr-pro', name: 'Pro (월 $20)', price: 28000 },

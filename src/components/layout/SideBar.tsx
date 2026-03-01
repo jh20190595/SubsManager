@@ -29,15 +29,7 @@ export default function SideBar() {
                         <IoHome size={16} color="#666" />
                         <span>DashBoard</span>
                     </NavLink>
-                    <NavLink
-                        to="./calendar"
-                        className={({ isActive }) =>
-                            isActive ? `${styles.menuItem} ${styles.active}` : styles.menuItem
-                        }
-                    >
-                        <IoCalendarNumberSharp size={16} color="#666" />
-                        <span>Calendar</span>
-                    </NavLink>
+
                 </div>
 
                 <div className={styles.sectionWrap}>

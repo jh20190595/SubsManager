@@ -25,7 +25,7 @@ export const useSubscriptionSummary = () => {
             return (prev.price > current.price) ? prev : current;
         })
 
-        const MaxPriceserviceLogo = SUBSCRIPTION_SERVICES.find( f => f.id === MaxPriceService.service_name)?.logoUrl
+        const MaxPriceserviceLogo = SUBSCRIPTION_SERVICES.find( f => f.service_name === MaxPriceService.service_name)?.logoUrl
 
         const annualTotalCost = subscriptions.reduce((acc,item) => {
             const month = new Date(item.start_date).getMonth() + 1

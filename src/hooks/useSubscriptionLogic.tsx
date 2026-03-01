@@ -22,7 +22,7 @@ export const useSubscriptionLogic = () => {
 
     const changeService = (newServiceId: string) => {
 
-        const currentService = SUBSCRIPTION_SERVICES.find(s => s.id === newServiceId);
+        const currentService = SUBSCRIPTION_SERVICES.find(s => s.service_name === newServiceId);
 
         setForm(prev => ({
             ...prev,
@@ -36,7 +36,7 @@ export const useSubscriptionLogic = () => {
 
     const changePlan = (newPlanId: string) => {
 
-        const currentService = SUBSCRIPTION_SERVICES.find(s => s.id === form.service_name);
+        const currentService = SUBSCRIPTION_SERVICES.find(s => s.service_name === form.service_name);
 
         const selectedPlan = currentService?.plans.find(p => p.id === newPlanId);
 
@@ -87,7 +87,7 @@ export const useSubscriptionLogic = () => {
     }
 
 
-    const currentServiceData = SUBSCRIPTION_SERVICES.find(s => s.id === form.service_name);
+    const currentServiceData = SUBSCRIPTION_SERVICES.find(s => s.service_name === form.service_name);
 
 
     const currentPlanOptions = currentServiceData?.plans.map(p => ({

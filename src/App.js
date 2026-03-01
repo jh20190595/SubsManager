@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import PlatformLayout from './components/layout/PlatformLayout.tsx';
 import DashBoard from './pages/platform/dashBoard.tsx';
-import Calendar from './pages/platform/Calendar.tsx'
 import Subscription from './pages/platform/subscription.tsx';
 import PublicLayout from './components/layout/PublicLayout.tsx';
 import PublicPage from './pages/Public/PublicPage.tsx';
@@ -36,7 +35,6 @@ function App() {
                 <Route element={<LoginValidation />}>
                     <Route element={<PlatformLayout />}>
                         <Route path='/dashBoard' element={<DashBoard />} />
-                        <Route path='/calendar' element={<Calendar/>}/>
                         <Route path='/subscription' element={<Subscription />} />
                     </Route>
                 </Route>

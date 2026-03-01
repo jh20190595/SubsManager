@@ -15,15 +15,13 @@ export default function DetailsComponent() {
     }, []);
 
     return (
-        <div className={styles.container}>
-            <h2>하이</h2>
-            
+        <div className={styles.container}>   
             <ul className={styles.ListWrap}>
                 {subscriptions.map((item, index) => {
-                    const serviceLogoUrl = SUBSCRIPTION_SERVICES.find(f => f.id === item.service_name)?.logoUrl
+                    const serviceLogoUrl = SUBSCRIPTION_SERVICES.find(f => f.service_name === item.service_name)?.logoUrl
                     return (
                         <li key={item.id}>
-                            <div><img src={serviceLogoUrl} style={{ width: '20px', height: '20px', borderRadius: '30%' }} /></div>
+                            <div><img src={serviceLogoUrl} style={{ width: '30px', height: '30px', borderRadius: '30%', objectFit : 'contain' }} /></div>
                             <div>{item.service_name}</div>
                         </li>
                     )

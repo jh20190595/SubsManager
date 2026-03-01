@@ -57,7 +57,7 @@ function UpcomingList() {
             <div className={styles.UpcomingListWrap}>
                 <ul className={styles.ListWrap}>
                     {currentItem.map((item) => {
-                        const serviceLogo = SUBSCRIPTION_SERVICES.find(f => f.id === item.service_name)
+                        const serviceLogo = SUBSCRIPTION_SERVICES.find(f => f.service_name.toLowerCase() === item.service_name.toLowerCase())
                         return (
                             <li key={item.id} className={styles.item}>
                                 <div className={styles.itemLeft}><img src={serviceLogo?.logoUrl || "Logo"} style={{ width: '40px', height: '40px', borderRadius: '30%', objectFit : 'contain', }} /></div>

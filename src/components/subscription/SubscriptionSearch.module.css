@@ -1,0 +1,106 @@
+.container {
+    border : 2px solid #333;
+    border-radius: 16px;
+    width: 100%;
+    max-width : 700px;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 6px 6px 0px 0px #333;
+    background-color: #fff;
+    padding : 24px 0;
+    gap : 16px;
+}
+
+.inputTop {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap : 20px;
+}
+
+.btnWrap {
+    display: flex;
+    position: relative;
+    border : 2px solid #333;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 220px;
+    background-color: white;
+}
+
+.moveBackColor {
+    position: absolute;
+    top : 0;
+    left : 0;
+    width: 50%;
+    height: 100%;
+    background-color: #fef3c7;
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    z-index: 1
+}
+
+.btnWrap button {
+    flex : 1;
+    z-index: 2;
+    background: transparent;
+    border : none;
+    padding : 10px 0;
+    cursor: pointer;
+    font-size : 10px;
+    font-weight: 700;
+    color : #333;
+    transition: color 0.3s;
+    white-space: nowrap;
+}
+
+.activceBtn {
+    color : #fff !important;
+}
+
+
+.divider {
+    width: 90%;
+    height: 10px;
+    border-top : 2px dashed #999;
+}
+
+.textInput {
+    width: 30%;
+    padding : 12px 16px;
+    border : 2px solid #333;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.textInput:focus {
+    box-shadow: 3px 3px 0px 0px #333;
+    background-color: #fffbeb;
+    transform: translate(-2px, -2px);
+}
+
+.categoryWrap {
+    list-style: none;
+    display: flex;
+    gap : 5px;
+    font-size : 11px;
+    font-weight: 600;
+}
+
+.categoryWrap > li {
+    border : 2px solid #666;
+    border-radius: 12px;
+    padding : 0 30px;
+    cursor: pointer;
+}
+
+.activeCategory {
+    color : white;
+    background-color: black;
+}
+
