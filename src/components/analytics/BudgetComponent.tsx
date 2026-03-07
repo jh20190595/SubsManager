@@ -55,8 +55,9 @@ export default function BudgetComponent() {
                     <span style={{ fontSize: '13px', fontWeight: '500', color: '#666' }}>{`/ \n₩ ${budget.toLocaleString()}`}</span>
                 </div>
                 <GaugeBar budget={budget} monthlyCost={totalMonthlycost} />
-            </div>
+                {totalMonthlycost > budget && <h5 style={{ margin: 0, color: 'red', fontSize: '11px', fontWeight: '600' }} className={styles.noticeText}>* 예산을 초과하였습니다.</h5>}
 
+            </div>
 
         </div>
     )
@@ -67,7 +68,7 @@ function GaugeBar({ budget, monthlyCost }: { budget: number, monthlyCost: number
     const persent = budget > 0 ? Math.min((monthlyCost / Number(budget)) * 100, 100) : 0;
     const isOverBudget = budget > 0 && monthlyCost > budget;
     const barColor = isOverBudget ? '#fecaca' : "#86efac"
-    
+
     return (
         <div style={{
             width: '100%',

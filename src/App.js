@@ -7,10 +7,13 @@ import PublicLayout from './components/layout/PublicLayout.tsx';
 import PublicPage from './pages/Public/PublicPage.tsx';
 import LoginValidation from './components/auth/LoginValidation.tsx';
 import { Toaster } from 'react-hot-toast';
-import Analytics from './pages/platform/analytics.tsx';
-;
+import { Suspense, lazy } from 'react';
+import LoadingScreen from './components/ui/LoadingScreen.tsx';
+
+const Analytics = lazy(() => import('./pages/platform/analytics.tsx')) // 지연로딩
 
 function App() {
+
 
     return (
         <BrowserRouter>
@@ -37,7 +40,11 @@ function App() {
                     <Route element={<PlatformLayout />}>
                         <Route path='/dashBoard' element={<DashBoard />} />
                         <Route path='/subscription' element={<Subscription />} />
-                        <Route path='/analytics' element={<Analytics/>}/>
+                        <Route path='/analytics' element={
+                            <Suspense fallback={<div><LoadingScreen/></div>}>
+                                <Analytics/>
+                            </Suspense>
+                        }/>
                     </Route>
                 </Route>
 
