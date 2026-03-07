@@ -9,19 +9,19 @@ import CalendarComponent from '../charts/CalendarComponent.tsx';
 import SpectrumComponent from '../charts/SpectrumComponent.tsx';
 
 
-const CHARTS_MAP : Record<string , React.ReactNode> = {
-    'Treemap' : <TreemapComponent/>,
-    'Bubbles' : <BubblesComponent/>,
-    'Calendar' : <CalendarComponent/>,
-    'Spectrum' : <SpectrumComponent/>,
+const CHARTS_MAP: Record<string, React.ReactNode> = {
+    'Treemap': <TreemapComponent />,
+    'Bubbles': <BubblesComponent />,
+    'Calendar': <CalendarComponent />,
+    'Spectrum': <SpectrumComponent />,
 }
 
-const TAP_TYPE = ['Treemap','Bubbles','Calendar','Spectrum'];
+const TAP_TYPE = ['Treemap', 'Bubbles', 'Calendar', 'Spectrum'];
 
 export default function VisualComponent() {
     const { data: subscriptions } = useSubscriptions('price');
-    
-    const [activeTap ,setActiveTap] = useState('Treemap')
+
+    const [activeTap, setActiveTap] = useState('Treemap')
     const filterData = subscriptions.map((item) => {  // recharts, Treemap 쓰기 위해선 { name : , size : } 로 가공하기
         return { name: item.service_name, size: item.price }
     });
@@ -31,7 +31,7 @@ export default function VisualComponent() {
             <div className={styles.top}>
                 <h4 style={{ margin: 0 }}>Subscription Visuals</h4>
                 <ul className={styles.topBtnWrap}>
-                    {TAP_TYPE.map((item,index) => (
+                    {TAP_TYPE.map((item, index) => (
                         <li key={item} className={styles.topBtnItem}>
                             <button className={`${styles.topBtn} ${activeTap === item ? styles.activeBtn : ""}`} onClick={() => setActiveTap(item)}>{item}</button>
                         </li>
@@ -39,7 +39,7 @@ export default function VisualComponent() {
                 </ul>
             </div>
 
-            <div className={styles.content}>
+            <div className={activeTap !== 'Calendar' ? styles.content : styles.calendarContent}>
                 {CHARTS_MAP[activeTap]}
             </div>
             <div className={styles.footer}></div>

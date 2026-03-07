@@ -1,22 +1,30 @@
 .dayListWrap {
     list-style: none;
-    width: 100%;
+    width: 98%;
+    height: 500px;
+    padding : 20px;
     margin: 0;
-    padding : 0;
     display: grid;
-    gap : 12px;
-    grid-template-columns: repeat(7,1fr);
-    grid-template-rows: repeat(3,1fr);
-
+    gap: 12px;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    border: 2px solid #000;
 }
 
 .dayItem {
-    padding : 20px;
-    border : 2px solid #333;
+    padding: 20px;
+    border: 2px solid #333;
     border-radius: 8px;
     cursor: pointer;
 }
 
-.dayItem > p {
+.dayItem>p {
     margin: 0;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.dayItem.dayItembgChange {
+    background-color: #fdba74;
 }
