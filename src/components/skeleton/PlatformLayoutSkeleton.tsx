@@ -5,38 +5,62 @@ interface SkProps {
   height?: number | string;
   circle?: boolean;
   className?: string;
+  style?: React.CSSProperties;
 }
 
-const Sk = ({ width, height, circle, className = "" }: SkProps) => (
+const Sk = ({ width, height, circle, className = "", style }: SkProps) => (
   <div
     className={`${styles.sk} ${circle ? styles.skCircle : ""} ${className}`}
-    style={{ width, height }}
+    style={{ width, height, ...style }}
   />
 );
 
 const StatCardSkeleton = ({ color }: { color: string }) => (
   <div className={`${styles.statCard} ${styles[color]}`}>
-    <Sk width={80} height={10} />
+    <div className={styles.statCardHeader}>
+      <Sk width={22} height={22} circle />
+      <Sk width={80} height={12} />
+    </div>
     <Sk width={100} height={18} />
   </div>
 );
 
-const PaymentItemSkeleton = () => (
-  <div className={styles.paymentItem}>
-    <Sk width={32} height={32} circle />
-    <div className={styles.paymentInfo}>
-      <Sk width={80} height={12} />
-      <Sk width={36} height={10} />
+const BarRowSkeleton = ({ barWidth }: { barWidth: string }) => (
+  <li className={styles.barRow}>
+    <div className={styles.barSubContent}>
+      <Sk width={48} height={11} />
+      <Sk width={64} height={11} />
     </div>
-    <Sk width={50} height={12} />
-  </div>
+    <div className={styles.barTrack}>
+      <div className={`${styles.sk} ${styles.barFill}`} style={{ width: barWidth }} />
+    </div>
+  </li>
 );
 
-const BarRowSkeleton = ({ barWidth }: { barWidth: string }) => (
-  <div className={styles.barRow}>
-    <Sk width={48} height={11} />
-    <Sk height={10} className={styles.barFill} style={{ width: barWidth } as React.CSSProperties} />
-    <Sk width={72} height={11} />
+const UpcomingItemSkeleton = () => (
+  <li className={styles.upcomingItem}>
+    <div className={styles.itemImgWrap}>
+      <Sk width={40} height={40} className={styles.itemImg} />
+    </div>
+    <div className={styles.itemCenter}>
+      <Sk width="60%" height={13} />
+      <Sk width={40} height={11} />
+    </div>
+    <Sk width={60} height={13} className={styles.itemRight} />
+  </li>
+);
+
+const PaymentListItemSkeleton = () => (
+  <div className={styles.paymentListItem}>
+    <Sk width={36} height={36} circle />
+    <div className={styles.paymentItemInfo}>
+      <div className={styles.paymentNameRow}>
+        <Sk width={80} height={13} />
+        <Sk width={28} height={14} className={styles.badge} />
+      </div>
+      <Sk width={60} height={12} />
+    </div>
+    <Sk width={72} height={30} className={styles.kakaoBtn} />
   </div>
 );
 
@@ -45,35 +69,43 @@ export default function DashboardSkeleton() {
     <div className={styles.layout}>
       {/* Sidebar */}
       <aside className={styles.sidebar}>
-        <div className={styles.profile}>
-          <Sk width={36} height={36} circle />
-          <Sk width={70} height={14} />
+        <div className={styles.logoWrap}>
+          <Sk width={50} height={50} circle />
+          <Sk width={100} height={20} />
         </div>
-
-        <Sk width={40} height={10} className={styles.navGroupLabel} />
-        <Sk width={110} height={13} className={styles.navItem} />
-
-        <Sk width={60} height={10} className={styles.navGroupLabel} />
-        <Sk width={100} height={13} className={styles.navItem} />
-        <Sk width={90} height={13} className={styles.navItem} />
-        <Sk width={80} height={13} className={styles.navItem} />
-
-        <Sk width={55} height={10} className={styles.navGroupLabel} />
-        <Sk width={85} height={13} className={styles.navItem} />
-        <Sk width={95} height={13} className={styles.navItem} />
-        <Sk width={75} height={13} className={styles.navItem} />
-        <Sk width={65} height={13} className={styles.navItem} />
+        <div className={styles.sidebarDivider} />
+        <div className={styles.sectionContainer}>
+          {/* Main section */}
+          <div className={styles.sectionWrap}>
+            <Sk width={40} height={11} className={styles.sectionTitle} />
+            <Sk width="80%" height={38} className={styles.menuItem} />
+          </div>
+          {/* Subscriptions section */}
+          <div className={styles.sectionWrap}>
+            <Sk width={100} height={11} className={styles.sectionTitle} />
+            <Sk width="80%" height={38} className={styles.menuItem} />
+            <Sk width="80%" height={38} className={styles.menuItem} />
+            <Sk width="80%" height={38} className={styles.menuItem} />
+          </div>
+          {/* Community section */}
+          <div className={styles.sectionWrap}>
+            <Sk width={80} height={11} className={styles.sectionTitle} />
+            <Sk width="80%" height={38} className={styles.menuItem} />
+            <Sk width="80%" height={38} className={styles.menuItem} />
+            <Sk width="80%" height={38} className={styles.menuItem} />
+          </div>
+        </div>
       </aside>
 
-      {/* Main */}
+      {/* Main Content */}
       <main className={styles.main}>
-        {/* Header */}
-        <div className={styles.header}>
-          <Sk width={110} height={20} />
-          <Sk width={90} height={32} className={styles.btnSk} />
+        {/* SummaryCards top section */}
+        <div className={styles.topSection}>
+          <Sk width={130} height={26} />
+          <Sk width={110} height={40} className={styles.addBtn} />
         </div>
 
-        {/* Stat cards */}
+        {/* Stat card grid */}
         <div className={styles.statGrid}>
           <StatCardSkeleton color="blue" />
           <StatCardSkeleton color="green" />
@@ -81,59 +113,78 @@ export default function DashboardSkeleton() {
           <StatCardSkeleton color="pink" />
         </div>
 
-        {/* Bottom row */}
-        <div className={styles.bottomGrid}>
-          {/* Left panel */}
-          <div className={styles.panel}>
-            <div className={styles.tabs}>
-              <Sk width={72} height={28} className={styles.tabBtn} />
-              <Sk width={64} height={28} className={styles.tabBtn} />
-            </div>
+        {/* Divider */}
+        <div className={styles.mainDivider} />
 
-            <Sk width={140} height={12} className={styles.chartTitle} />
-
-            <div className={styles.bars}>
-              <BarRowSkeleton barWidth="85%" />
-              <BarRowSkeleton barWidth="30%" />
-              <BarRowSkeleton barWidth="92%" />
-              <BarRowSkeleton barWidth="20%" />
-              <BarRowSkeleton barWidth="8%" />
-            </div>
-
-            <div className={styles.noticeBox}>
-              <div className={styles.noticeHeader}>
-                <Sk width={18} height={18} circle />
-                <Sk width={60} height={12} />
+        {/* Bottom grid: SubscriptionViewer | UpcomingList */}
+        <div className={styles.bottomSection}>
+          {/* SubscriptionViewer (col 1, row 1) */}
+          <div className={styles.chartArea}>
+            <div className={styles.menuWrap}>
+              <div className={styles.menuBtnGroup}>
+                <Sk width={72} height={30} className={styles.menuBtn} />
+                <Sk width={64} height={30} className={styles.menuBtn} />
               </div>
-              <Sk width={180} height={11} className={styles.noticeSubtitle} />
-              <div className={styles.noticeBody}>
-                <Sk width={160} height={11} />
-                <Sk width={80} height={11} />
+            </div>
+            <div className={styles.viewerListWrap}>
+              <Sk width={160} height={14} />
+              <ul className={styles.bars}>
+                <BarRowSkeleton barWidth="85%" />
+                <BarRowSkeleton barWidth="30%" />
+                <BarRowSkeleton barWidth="92%" />
+                <BarRowSkeleton barWidth="20%" />
+                <BarRowSkeleton barWidth="8%" />
+              </ul>
+            </div>
+          </div>
+
+          {/* UpcomingList (col 2, rows 1+2) */}
+          <div className={styles.upcomingArea}>
+            <Sk width={100} height={20} />
+            <div className={styles.upcomingWrap}>
+              <ul className={styles.upcomingList}>
+                <UpcomingItemSkeleton />
+                <UpcomingItemSkeleton />
+                <UpcomingItemSkeleton />
+                <UpcomingItemSkeleton />
+                <UpcomingItemSkeleton />
+              </ul>
+              <div className={styles.paginationWrap}>
+                <Sk width={50} height={22} className={styles.pageBtn} />
+                <Sk width={30} height={11} />
+                <Sk width={50} height={22} className={styles.pageBtn} />
               </div>
             </div>
           </div>
 
-          {/* Right panel */}
-          <div className={styles.panel}>
+          {/* PaymentReminder (col 1, row 2) */}
+          <div className={styles.paymentArea}>
             <div className={styles.paymentHeader}>
-              <Sk width={16} height={16} circle />
-              <Sk width={70} height={13} />
+              <Sk width={24} height={24} circle />
+              <div className={styles.paymentHeaderText}>
+                <Sk width={80} height={14} />
+                <Sk width={160} height={12} />
+              </div>
             </div>
-
+            <div className={styles.paymentDivider} />
             <div className={styles.paymentList}>
-              {Array.from({ length: 5 }).map((_, i) => (
-                <PaymentItemSkeleton key={i} />
-              ))}
-            </div>
-
-            <div className={styles.pagination}>
-              <Sk width={50} height={22} className={styles.pageBtn} />
-              <Sk width={30} height={11} />
-              <Sk width={50} height={22} className={styles.pageBtn} />
+              <PaymentListItemSkeleton />
+              <PaymentListItemSkeleton />
+              <PaymentListItemSkeleton />
             </div>
           </div>
         </div>
       </main>
+
+      {/* Mobile bottom tab bar */}
+      <nav className={styles.bottomTab}>
+        {Array.from({ length: 5 }).map((_, i) => (
+          <div key={i} className={styles.tabItem}>
+            <Sk width={22} height={22} circle />
+            <Sk width={28} height={10} />
+          </div>
+        ))}
+      </nav>
     </div>
   );
 }
